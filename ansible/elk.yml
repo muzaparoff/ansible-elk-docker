@@ -2,8 +2,10 @@
   remote_user: vagrant
   sudo: yes
   roles:
-    # - etcd
-    # - confd
     - docker
     - nginx
     - elasticsearch
+    - logstash
+    - kibana
+    - filebeat
+    # - mysql

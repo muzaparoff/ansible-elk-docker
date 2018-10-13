@@ -1,0 +1,5 @@
+/.idea
+/*.iml
+/ansible/.vagrant
+*.retry
+*.DS_Store
