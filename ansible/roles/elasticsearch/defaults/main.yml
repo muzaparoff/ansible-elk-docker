@@ -1,0 +1,27 @@
+es_mlockall: false
+es_max_local_storage_nodes: 1
+es_zen_minimum_master_nodes: 1
+
+docker_elasticsearch_name: elasticsearch
+docker_elasticsearch_image: elasticsearch:latest
+docker_elasticsearch_data_dir: "/opt/{{ docker_elasticsearch_name }}/data/"
+docker_elasticsearch_memory_limit: 512MB
+docker_elasticsearch_env:
+  ES_HEAP_SIZE: "512m"
+docker_elasticsearch_net: default
+docker_elasticsearch_expose:
+  - 9200:9200
+  - 9300:9300
+docker_elasticsearch_ports: "{{ docker_elasticsearch_expose }}"
+docker_elasticsearch_directory_volumes:
+  - "{{ docker_elasticsearch_data_dir }}:/usr/share/elasticsearch/data:rw"
+docker_elasticsearch_file_volumes:
+  - "/opt/{{ docker_elasticsearch_name }}/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro"
+docker_elasticsearch_template_path: ""
+docker_elasticsearch_volumes: "{{ docker_elasticsearch_directory_volumes + docker_elasticsearch_file_volumes }}"
+docker_elasticsearch_links: []
+docker_elasticsearch_log_driver: syslog
+docker_elasticsearch_log_opt:
+  syslog-facility: local0
+  tag: "{{ docker_elasticsearch_name }}"
+docker_api_version: 1.21
