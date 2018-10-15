@@ -1,5 +1,5 @@
 ---
-# tasks file for docker.ubuntu
+
 - name: "Include proper python vars file"
   include_vars: "{{ python_vars_file }}"
 
@@ -196,7 +196,6 @@
       module in Ansible < 2.3
   when: pip_install_docker_compose and _pip_version_docker_compose != pip_version_docker_compose
 
-# See vars/main.yml for more information on this.
 - name: Clean previous docker-py package if installing docker.
   pip:
     name: docker-py
@@ -227,6 +226,9 @@
     - name: "{{ _pip_docker_package_name }}"
       version: "{{ pip_version_docker }}"
       install: "{{ _pip_install_docker }}"
+    - name: docker-py
+      version: latest
+      install: docker-py
   when: item.install|bool
 
 - name: Check if /etc/updatedb.conf exists
@@ -330,7 +332,6 @@
     state: started
   when: start_docker_daemon
 
-  # ATTENTION: this task can potentially create new users!
 - name: Add users to the docker group
   user:
     name:   "{{ item }}"
@@ -343,3 +344,4 @@
   setup:
     filter: "ansible_docker0"
   when: ansible_docker0 is not defined
+  

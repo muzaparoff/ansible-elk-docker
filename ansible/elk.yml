@@ -1,3 +1,4 @@
+---
 - hosts: all
   remote_user: vagrant
   sudo: yes
@@ -8,4 +9,4 @@
     - logstash
     - kibana
     - filebeat
-    # - mysql
+    - mysql

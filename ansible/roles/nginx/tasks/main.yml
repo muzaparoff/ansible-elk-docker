@@ -1,3 +1,5 @@
+---
+
 - name: sites-enabled directory is present
   file:
     path=/etc/nginx/sites-enabled
@@ -26,4 +28,4 @@
     restart_policy: always
     volumes: "{{ volumes }}"
   tags: [nginx]
-  ignore_errors: yes
+  # ignore_errors: yes

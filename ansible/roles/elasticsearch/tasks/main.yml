@@ -1,3 +1,5 @@
+---
+
 - name: Ensure docke volume mapping host directories exist
   file:
     state: directory
@@ -38,7 +40,7 @@
   tags:
     - install
     - upgrade
-  ignore_errors: true
+  # ignore_errors: true
 
 - name: Run docker elasticsearch container
   docker:
@@ -59,4 +61,3 @@
   tags:
     - install
     - upgrade
-  ignore_errors: true
